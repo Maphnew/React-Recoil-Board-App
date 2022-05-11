@@ -1,29 +1,32 @@
-import { useObserver } from "mobx-react";
 import { useEffect } from "react";
-import useStore from "../store/useStore";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { create } from "../store-recoil/articleList";
+import { saveInfoState } from "../store-recoil/saveInfo";
 
 const Content = (props) => {
     const { article, setArticle, setOpenModal, modal } = props;
-    const { articleListStore, saveInfoStore } = useStore();
+    const createArticle = useSetRecoilState(create);
+    const saveInfo = useRecoilValue(saveInfoState);
+
     useEffect(() => {
         if (!modal) return;
         setArticle({
             ...article,
-            author: saveInfoStore.author,
+            author: saveInfo.author,
         });
-    }, [saveInfoStore.author]);
+    }, [saveInfo.author]);
     const submitHandler = (e) => {
-        article.date = saveInfoStore.date.toLocaleDateString();
+        article.date = saveInfo.date.toLocaleDateString();
         e.preventDefault();
-        articleListStore.createArticle(article);
+        createArticle(article);
         setOpenModal(false);
     };
     const contentChangeHandler = (e) => {
-        const tempArticle = Object.assign(article);
+        const tempArticle = Object.assign({}, article);
         tempArticle[e.target.id] = e.target.value;
         setArticle({ ...tempArticle });
     };
-    return useObserver(() => (
+    return (
         <section className="content">
             <form id="form-content" onSubmit={submitHandler}>
                 <h3>Contents</h3>
@@ -65,7 +68,7 @@ const Content = (props) => {
                 </div>
             </form>
         </section>
-    ));
+    );
 };
 
 export default Content;

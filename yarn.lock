@@ -4518,6 +4518,11 @@ gzip-size@^6.0.0:
   dependencies:
     duplexer "^0.1.2"
 
+hamt_plus@1.0.2:
+  version "1.0.2"
+  resolved "http://192.168.0.45/nexus/repository/npm-group/hamt_plus/-/hamt_plus-1.0.2.tgz#e21c252968c7e33b20f6a1b094cd85787a265601"
+  integrity sha1-4hwlKWjH4zsg9qGwlM2FeHomVgE=
+
 handle-thing@^2.0.0:
   version "2.0.1"
   resolved "http://192.168.0.45/nexus/repository/npm-group/handle-thing/-/handle-thing-2.0.1.tgz#857f79ce359580c340d43081cc648970d0bb234e"
@@ -5958,23 +5963,6 @@ mkdirp@~0.5.1:
   dependencies:
     minimist "^1.2.6"
 
-mobx-react-lite@^3.4.0:
-  version "3.4.0"
-  resolved "http://192.168.0.45/nexus/repository/npm-group/mobx-react-lite/-/mobx-react-lite-3.4.0.tgz#d59156a96889cdadad751e5e4dab95f28926dfff"
-  integrity sha512-bRuZp3C0itgLKHu/VNxi66DN/XVkQG7xtoBVWxpvC5FhAqbOCP21+nPhULjnzEqd7xBMybp6KwytdUpZKEgpIQ==
-
-mobx-react@^7.4.0:
-  version "7.4.0"
-  resolved "http://192.168.0.45/nexus/repository/npm-group/mobx-react/-/mobx-react-7.4.0.tgz#29bbdc609c7f6c43e5af6c8e984c8b93a7fe08e8"
-  integrity sha512-gbUwaKZK09SiAleTMxNMKs1MYKTpoIEWJLTLRIR/xnALuuHET8wkL8j1nbc1/6cDkOWVyKz/ReftILx0Pdh2PQ==
-  dependencies:
-    mobx-react-lite "^3.4.0"
-
-mobx@^6.5.0:
-  version "6.5.0"
-  resolved "http://192.168.0.45/nexus/repository/npm-group/mobx/-/mobx-6.5.0.tgz#dc2d028b1882737f6e813fc92454381e438b7ad3"
-  integrity sha512-pHZ/cySF00FVENDWIDzJyoObFahK6Eg4d0papqm6d7yMkxWTZ/S/csqJX1A3PsYy4t5k3z2QnlwuCfMW5lSEwA==
-
 ms@2.0.0:
   version "2.0.0"
   resolved "http://192.168.0.45/nexus/repository/npm-group/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
@@ -7242,6 +7230,13 @@ readdirp@~3.6.0:
   integrity sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==
   dependencies:
     picomatch "^2.2.1"
+
+recoil@^0.7.3-alpha.2:
+  version "0.7.3-alpha.2"
+  resolved "http://192.168.0.45/nexus/repository/npm-group/recoil/-/recoil-0.7.3-alpha.2.tgz#6aa80b4fe37700b067bd367bbe503e9c121947a4"
+  integrity sha512-8LL4T8Bh7WMA5/ka+420PCenaUFie0457kyxX7cy/gsyRlbIGYpyNkAyU0znCvtHTN2clVYkTjGF6zKJ/DzzJg==
+  dependencies:
+    hamt_plus "1.0.2"
 
 recursive-readdir@^2.2.2:
   version "2.2.2"

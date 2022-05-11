@@ -1,28 +1,40 @@
 import { AgGridReact } from "ag-grid-react";
 import { useEffect, useState } from "react";
-import { useObserver } from "mobx-react";
-import useStore from "../store/useStore";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { articleListState, update, remove } from "../store-recoil/articleList";
+import { saveInfoState, setAuthorState, setDateState } from "../store-recoil/saveInfo";
 import Modal from "./Modal";
 
 const ArticleList = (props) => {
     const { article, setArticle } = props;
     const [openModal, setOpenModal] = useState(false);
-    const { articleListStore, saveInfoStore } = useStore();
+
+    const articles = useRecoilValue(articleListState);
+    const setUpdateArticle = useSetRecoilState(update);
+    const setRemoveArticle = useSetRecoilState(remove);
+
+    const { author, date } = useRecoilValue(saveInfoState);
+    const setAuthor = useSetRecoilState(setAuthorState);
+    const setDate = useSetRecoilState(setDateState);
+
     useEffect(() => {
-        saveInfoStore.setDate(new Date());
-        setInterval(() => saveInfoStore.setDate(new Date()), 1000);
-    }, [saveInfoStore]);
+        setDate(new Date());
+        let timeInterval = setInterval(() => setDate(new Date()), 1000);
+        return () => {
+            clearInterval(timeInterval);
+        };
+    }, []);
     const userNameChangeHandler = (e) => {
-        saveInfoStore.setAuthor(e.target.value);
+        setAuthor(e.target.value);
     };
     const createButtonClickHandler = () => {
         setOpenModal(!openModal);
     };
     const updateButtonClickHandler = () => {
-        articleListStore.updateArticle(article);
+        setUpdateArticle(article);
     };
     const deleteButtonClickHandler = () => {
-        articleListStore.deleteArticle(article);
+        setRemoveArticle(article);
     };
     const rowClickHandler = (e) => {
         const { number, title, author, date, content } = e.data;
@@ -34,22 +46,17 @@ const ArticleList = (props) => {
             content,
         });
     };
-    return useObserver(() => (
+    return (
         <>
             <section className="article-list">
                 <div className="article-list__header">
                     <div className="userInfo">
                         <label htmlFor="user">사용자</label>
-                        <input id="user" onChange={userNameChangeHandler} value={saveInfoStore.author} />
+                        <input id="user" onChange={userNameChangeHandler} value={author} />
                     </div>
                     <div className="time">
                         <label htmlFor="time">현재시간</label>
-                        <input
-                            id="time"
-                            className="userInfo__time"
-                            value={saveInfoStore.date.toLocaleTimeString()}
-                            readOnly
-                        ></input>
+                        <input id="time" className="userInfo__time" value={date.toLocaleTimeString()} readOnly></input>
                     </div>
                 </div>
                 <div className="board">
@@ -78,7 +85,7 @@ const ArticleList = (props) => {
                                 sortable: true,
                                 filter: true,
                             }}
-                            rowData={articleListStore.articleList}
+                            rowData={articles}
                             onRowClicked={rowClickHandler}
                         />
                     </div>
@@ -86,7 +93,7 @@ const ArticleList = (props) => {
             </section>
             {openModal && <Modal setOpenModal={setOpenModal} />}
         </>
-    ));
+    );
 };
 
 export default ArticleList;
