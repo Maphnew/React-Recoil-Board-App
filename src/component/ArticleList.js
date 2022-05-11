@@ -2,7 +2,7 @@ import { AgGridReact } from "ag-grid-react";
 import { useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { articleListState, update, remove } from "../store-recoil/articleList";
-import { saveInfoState, setAuthorState, setDateState } from "../store-recoil/saveInfo";
+import * as SaveInfo from "../store-recoil/saveInfo";
 import Modal from "./Modal";
 
 const ArticleList = (props) => {
@@ -13,9 +13,9 @@ const ArticleList = (props) => {
     const setUpdateArticle = useSetRecoilState(update);
     const setRemoveArticle = useSetRecoilState(remove);
 
-    const { author, date } = useRecoilValue(saveInfoState);
-    const setAuthor = useSetRecoilState(setAuthorState);
-    const setDate = useSetRecoilState(setDateState);
+    const { author, date } = useRecoilValue(SaveInfo.saveInfoState);
+    const setAuthor = useSetRecoilState(SaveInfo.setAuthorState);
+    const setDate = useSetRecoilState(SaveInfo.setDateState);
 
     useEffect(() => {
         setDate(new Date());
