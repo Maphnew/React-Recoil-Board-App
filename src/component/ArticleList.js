@@ -1,5 +1,7 @@
 import { AgGridReact } from "ag-grid-react";
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faPenToSquare, faTrashCan, faUser, faClock } from "@fortawesome/free-solid-svg-icons";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { articleListState, update, remove } from "../store-recoil/articleList";
 import * as SaveInfo from "../store-recoil/saveInfo";
@@ -51,19 +53,29 @@ const ArticleList = (props) => {
             <section className="article-list">
                 <div className="article-list__header">
                     <div className="userInfo">
-                        <label htmlFor="user">사용자</label>
+                        <label htmlFor="user">
+                            <FontAwesomeIcon icon={faUser} className="ic-gray" /> 사용자
+                        </label>
                         <input id="user" onChange={userNameChangeHandler} value={author} />
                     </div>
                     <div className="time">
-                        <label htmlFor="time">현재시간</label>
+                        <label htmlFor="time">
+                            <FontAwesomeIcon icon={faClock} className="ic-gray" /> 현재시간
+                        </label>
                         <input id="time" className="userInfo__time" value={date.toLocaleTimeString()} readOnly></input>
                     </div>
                 </div>
                 <div className="board">
                     <div className="board__buttons">
-                        <button onClick={createButtonClickHandler}>신규</button>
-                        <button onClick={updateButtonClickHandler}>수정</button>
-                        <button onClick={deleteButtonClickHandler}>삭제</button>
+                        <button onClick={createButtonClickHandler}>
+                            <FontAwesomeIcon icon={faPlus} /> 신규
+                        </button>
+                        <button onClick={updateButtonClickHandler}>
+                            <FontAwesomeIcon icon={faPenToSquare} /> 수정
+                        </button>
+                        <button onClick={deleteButtonClickHandler}>
+                            <FontAwesomeIcon icon={faTrashCan} /> 삭제
+                        </button>
                     </div>
                     <div
                         className="board__list ag-theme-material"

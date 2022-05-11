@@ -27,6 +27,7 @@
 .board__buttons {
     display: flex;
     justify-content: flex-end;
+    padding: 10px 0 10px;
 }
 
 .board {
@@ -81,3 +82,7 @@
 .content__info__create-date {
     border: none;
 } */
+
+.ic-gray {
+    color: darkgray;
+}
