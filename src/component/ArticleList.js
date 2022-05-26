@@ -9,7 +9,6 @@ import Modal from "./Modal";
 import Time from "./Time";
 
 const ArticleList = (props) => {
-    console.log("ArticleList component rendered");
     const { article, setArticle } = props;
     const [openModal, setOpenModal] = useState(false);
 

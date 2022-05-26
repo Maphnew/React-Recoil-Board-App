@@ -8,7 +8,7 @@ function App() {
     const [article, setArticle] = useState({ number: "", title: "", author: "", date: "", content: "" });
     return (
         <RecoilRoot>
-            <h2>Board App 📋</h2>
+            <h2>Board App 📋 with Recoil</h2>
             <div className="App">
                 <ArticleList article={article} setArticle={setArticle} />
                 <Content article={article} setArticle={setArticle} />

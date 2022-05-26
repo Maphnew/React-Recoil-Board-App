@@ -5,7 +5,6 @@ import { dateState } from "../store-recoil/saveInfo";
 import { useEffect } from "react";
 
 const Time = () => {
-    console.log("Time component rendered");
     const [date, setDate] = useRecoilState(dateState);
 
     useEffect(() => {
