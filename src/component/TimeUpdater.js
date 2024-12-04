@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-export const TimeUpdater = React.memo(({ children }) => {
+const TimeUpdater = React.memo(({ children }) => {
     const [date, setDate] = useState(new Date());
 
-    React.useEffect(() => {
+    useEffect(() => {
         const handle = setInterval(() => {
             setDate(new Date());
         }, 1000);
@@ -11,3 +11,5 @@ export const TimeUpdater = React.memo(({ children }) => {
     }, [date]);
     return children({ date });
 });
+
+export default React.memo(TimeUpdater);

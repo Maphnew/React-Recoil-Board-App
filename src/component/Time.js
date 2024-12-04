@@ -1,13 +1,14 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Icon from "./Icon";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
+import TimeUpdater from "./TimeUpdater";
 import React from "react";
-import { TimeUpdater } from "./TimeUpdater";
 
-const Time = React.memo(() => {
+const Time = () => {
+    console.info("Time render");
     return (
         <div className="time">
             <label htmlFor="time">
-                <FontAwesomeIcon icon={faClock} className="ic-gray" /> 현재시간
+                <Icon icon={faClock} className="ic-gray" /> 현재시간
             </label>
             <TimeUpdater>
                 {({ date }) => (
@@ -16,6 +17,6 @@ const Time = React.memo(() => {
             </TimeUpdater>
         </div>
     );
-});
+};
 
-export default Time;
+export default React.memo(Time);

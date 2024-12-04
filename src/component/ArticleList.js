@@ -1,14 +1,15 @@
-import { AgGridReact } from "ag-grid-react";
-import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState } from "react";
 import { faPlus, faPenToSquare, faTrashCan, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useRecoilValue, useRecoilState, useSetRecoilState } from "recoil";
 import { articleListState, update, remove } from "../store-recoil/articleList";
 import { authorState } from "../store-recoil/saveInfo";
 import Modal from "./Modal";
 import Time from "./Time";
+import Icon from "./Icon";
+import Grid from "./Grid";
 
 const ArticleList = (props) => {
+    console.log("ArticleList render");
     const { article, setArticle } = props;
     const [openModal, setOpenModal] = useState(false);
 
@@ -46,7 +47,7 @@ const ArticleList = (props) => {
                 <div className="article-list__header">
                     <div className="userInfo">
                         <label htmlFor="user">
-                            <FontAwesomeIcon icon={faUser} className="ic-gray" /> 사용자
+                            <Icon icon={faUser} className="ic-gray" /> 사용자
                         </label>
                         <input id="user" onChange={userNameChangeHandler} value={author} />
                     </div>
@@ -55,13 +56,13 @@ const ArticleList = (props) => {
                 <div className="board">
                     <div className="board__buttons">
                         <button onClick={createButtonClickHandler}>
-                            <FontAwesomeIcon icon={faPlus} /> 신규
+                            <Icon icon={faPlus} /> 신규
                         </button>
                         <button onClick={updateButtonClickHandler}>
-                            <FontAwesomeIcon icon={faPenToSquare} /> 수정
+                            <Icon icon={faPenToSquare} /> 수정
                         </button>
                         <button onClick={deleteButtonClickHandler}>
-                            <FontAwesomeIcon icon={faTrashCan} /> 삭제
+                            <Icon icon={faTrashCan} /> 삭제
                         </button>
                     </div>
                     <div
@@ -71,7 +72,7 @@ const ArticleList = (props) => {
                             minHeight: "200px",
                         }}
                     >
-                        <AgGridReact
+                        <Grid
                             columnDefs={[
                                 { field: "number", headerName: "번호" },
                                 { field: "title", headerName: "제목" },
