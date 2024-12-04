@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faPenToSquare, faTrashCan, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useRecoilValue, useRecoilState, useSetRecoilState } from "recoil";
 import { articleListState, update, remove } from "../store-recoil/articleList";
-import * as SaveInfo from "../store-recoil/saveInfo";
+import { authorState } from "../store-recoil/saveInfo";
 import Modal from "./Modal";
 import Time from "./Time";
 
@@ -16,7 +16,7 @@ const ArticleList = (props) => {
     const setUpdateArticle = useSetRecoilState(update);
     const setRemoveArticle = useSetRecoilState(remove);
 
-    const [author, setAuthor] = useRecoilState(SaveInfo.authorState);
+    const [author, setAuthor] = useRecoilState(authorState);
 
     const userNameChangeHandler = (e) => {
         setAuthor(e.target.value);

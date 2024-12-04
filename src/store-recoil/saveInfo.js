@@ -5,10 +5,10 @@ export const authorState = atom({
     default: "Anonymous",
 });
 
-export const dateState = atom({
-    key: "dateState",
-    default: new Date(),
-});
+// export const dateState = atom({
+//     key: "dateState",
+//     default: new Date(),
+// });
 
 // export const saveInfoState = atom({
 //     key: "saveInfoState",

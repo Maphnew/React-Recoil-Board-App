@@ -1,13 +1,12 @@
 import { useEffect } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { create } from "../store-recoil/articleList";
-import { authorState, dateState } from "../store-recoil/saveInfo";
+import { authorState } from "../store-recoil/saveInfo";
 
 const Content = (props) => {
     const { article, setArticle, setOpenModal, modal } = props;
     const createArticle = useSetRecoilState(create);
     const author = useRecoilValue(authorState);
-    const date = useRecoilValue(dateState);
 
     useEffect(() => {
         if (!modal) return;
@@ -17,7 +16,7 @@ const Content = (props) => {
         });
     }, [author]);
     const submitHandler = (e) => {
-        article.date = date.toLocaleDateString();
+        article.date = "";
         e.preventDefault();
         createArticle(article);
         setOpenModal(false);

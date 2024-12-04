@@ -1,15 +1,13 @@
-import React from "react";
-import { useRecoilState } from "recoil";
-import { dateState } from "../store-recoil/saveInfo";
+import React, { useState } from "react";
 
-export const TimeUpdater = React.memo(() => {
-    const [date, setDate] = useRecoilState(dateState);
-    
+export const TimeUpdater = React.memo(({ children }) => {
+    const [date, setDate] = useState(new Date());
+
     React.useEffect(() => {
         const handle = setInterval(() => {
-            setDate(new Date())
-        }, 1000)
-        return () => clearInterval(handle)
-    }, [])
-    return null
-})
+            setDate(new Date());
+        }, 1000);
+        return () => clearInterval(handle);
+    }, [date]);
+    return children({ date });
+});
